@@ -7,7 +7,7 @@ module.exports = {
   mode,
   entry: './src/index',
   output: {
-    publicPath: 'http://localhost:3001/', 
+    publicPath: 'http://localhost:3003/', 
   },
   devtool: 'source-map',
   optimization: {
@@ -30,15 +30,13 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: 'frontend-app-first',
-      library: { type: 'var', name: 'frontend-app-first' },
+      name: 'frontend-app-third',
+      library: { type: 'var', name: 'frontend-app-third' },
       filename: 'remoteEntry.js',
       exposes: {
-        'AppFromFirstFrontend': './src/app',
       },
       remotes: {
-        'frontend-app-second': 'frontend-app-second',
-        'frontend-app-third': 'frontend-app-third',
+        'frontend-app-first': 'frontend-app-first',
       },
       shared: ['react', 'react-dom'],
     }),
